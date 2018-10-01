@@ -33,9 +33,9 @@ export class PollenComponent implements OnInit {
   ngOnInit() {
 
     // first, load data only 1 single time, draw map, then dra heatmap layer
-    // this._fullloadPollenData();
+    this._fullloadPollenData();
 
-    this._drawSuburbGeoJson();
+    // this._drawSuburbGeoJson();
   }
   
 
@@ -149,6 +149,9 @@ export class PollenComponent implements OnInit {
 
   //-- Google Map requires Visualisation library extension
   _drawHeatMap_Layer(): void{
+
+    console.log("Drawing heatmap");
+
     this.heatmap_layer = new google.maps.visualization.HeatmapLayer({
         data: this._getPoints(),
         map: this.heatmap,

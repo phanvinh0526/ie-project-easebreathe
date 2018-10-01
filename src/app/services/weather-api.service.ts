@@ -11,8 +11,8 @@ const CURRENT_WEATHER_PATH = 'http://api.openweathermap.org/data/2.5/weather?';
 const FORECAST_WEATHER_PATH = 'http://api.openweathermap.org/data/2.5/forecast?';
 const APPID_KEY = 'appid=f6e6db01a6f3d71b4dc4a4b08b5bbf9e';
 
-const POLLEN_DATA = 'assets/data/vic_clean_alltrees.csv';
-const SUBURB_GEOJSON = 'assets/data/new_mel_lga_geotest.js';
+const POLLEN_DATA = 'assets/data/mel_clean_alltrees.csv'; // vic_clean_alltrees.csv
+const SUBURB_GEOJSON = 'assets/data/new_mel_lga_geofinal.js';
 
 
 @Injectable()
