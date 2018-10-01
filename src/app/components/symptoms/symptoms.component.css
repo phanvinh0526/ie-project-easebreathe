@@ -1,0 +1,221 @@
+
+
+/* Customized CSS */
+.table{
+  color: black;
+  
+}
+
+.float-right{
+  float: right;
+  margin-left: auto;
+  
+}
+
+/* Card Header  */
+.card-header-primary .card-icon,
+.card-header-primary .card-text,
+.card-header-primary:not(.card-header-icon):not(.card-header-text), .card.bg-primary,
+.card.card-rotate.bg-primary .front,
+.card.card-rotate.bg-primary .back {
+  background: linear-gradient(60deg, #ab47bc, #8e24aa); 
+  color: white;
+}
+
+/* .card-header-primary .card-icon,
+.card-header-primary:not(.card-header-icon):not(.card-header-text),
+.card-header-primary .card-text {
+  -webkit-box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+          box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4); } */
+
+.card-header-success .card-icon,
+.card-header-success .card-text,
+.card-header-success:not(.card-header-icon):not(.card-header-text), .card.bg-success,
+.card.card-rotate.bg-success .front,
+.card.card-rotate.bg-success .back {
+  background: linear-gradient(60deg, #66bb6a, #43a047); 
+  color: white;  
+}
+.card-header-warning .card-icon,
+.card-header-warning .card-text,
+.card-header-warning:not(.card-header-icon):not(.card-header-text), .card.bg-warning,
+.card.card-rotate.bg-warning .front,
+.card.card-rotate.bg-warning .back {
+  background: linear-gradient(60deg, #ffa726, #fb8c00); 
+  color: white;
+}
+.card-header-danger .card-icon,
+.card-header-danger .card-text,
+.card-header-danger:not(.card-header-icon):not(.card-header-text), .card.bg-danger,
+.card.card-rotate.bg-danger .front,
+.card.card-rotate.bg-danger .back {
+  background: linear-gradient(60deg, #ef5350, #e53935); 
+  color: white;
+}
+/*  \Card Header  */
+
+
+
+/* Form Check */
+.form-check {
+    margin-bottom: .5rem;
+    padding-left: 0; }
+    .form-check .form-check-label {
+      cursor: pointer;
+      padding-left: 0; }
+      .form-group.is-focused .form-check .form-check-label {
+        color: rgba(0,0,0, 0.26); }
+        .form-group.is-focused .form-check .form-check-label:hover, .form-group.is-focused .form-check .form-check-label:focus {
+          color: rgba(0,0,0, .54); }
+        fieldset[disabled] .form-group.is-focused .form-check .form-check-label {
+          color: rgba(0,0,0, 0.26); }
+    .form-check .form-check-input {
+      opacity: 0;
+      position: absolute;
+      margin: 0;
+      z-index: -1;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      left: 0;
+      pointer-events: none; }
+    .form-check .form-check-sign {
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+      float: left;
+      padding-right: 10px;
+      display: inline-block; }
+      .form-check .form-check-sign:before {
+        display: block;
+        position: absolute;
+        left: 0;
+        content: "";
+        background-color: rgba(0, 0, 0, 0.84);
+        height: 20px;
+        width: 20px;
+        border-radius: 100%;
+        z-index: 1;
+        opacity: 0;
+        margin: 0;
+        top: 0;
+        -webkit-transform: scale3d(2.3,2.3,1);
+        transform: scale3d(2.3,2.3,1); }
+      .form-check .form-check-sign .check {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid rgba(0,0,0, .54);
+        overflow: hidden;
+        z-index: 1;
+        border-radius: 3px; }
+        .form-check .form-check-sign .check:before {
+          position: absolute;
+          content: "";
+          -webkit-transform: rotate(45deg);
+                  transform: rotate(45deg);
+          display: block;
+          margin-top: -3px;
+          margin-left: 7px;
+          width: 0;
+          color: #fff;
+          height: 0;
+          -webkit-box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+                  box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+          -webkit-animation: checkbox-off 0.3s forwards;
+          animation: checkbox-off 0.3s forwards; }
+    .form-check .form-check-input:focus + .form-check-sign .check:after {
+      opacity: 0.2; }
+    .form-check .form-check-input:checked + .form-check-sign .check {
+      background: #9c27b0; }
+    .form-check .form-check-input:checked + .form-check-sign .check:before {
+      color: #FFFFFF;
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+      -webkit-animation: checkbox-on 0.3s forwards;
+      animation: checkbox-on 0.3s forwards; }
+    .form-check .form-check-input:checked + .form-check-sign:before {
+      -webkit-animation: rippleOn 500ms;
+      animation: rippleOn 500ms; }
+    .form-check .form-check-input:checked + .form-check-sign .check:after {
+      -webkit-animation: rippleOn 500ms forwards;
+      animation: rippleOn 500ms forwards; }
+    .form-check .form-check-input:not(:checked) + .form-check-sign:before {
+      -webkit-animation: rippleOff 500ms;
+      animation: rippleOff 500ms; }
+    .form-check .form-check-input:not(:checked) + .form-check-sign .check:after {
+      -webkit-animation: rippleOff 500ms;
+      animation: rippleOff 500ms; }
+    .form-check .rtl .form-check .form-check-sign .check::before {
+      margin-right: 10px; }
+    fieldset[disabled] .form-check,
+    fieldset[disabled] .form-check .form-check-input,
+    .form-check .form-check-input[disabled] ~ .form-check-sign .check,
+    .form-check .form-check-input[disabled] + .circle {
+      opacity: 0.5; }
+    .form-check .form-check-input[disabled] ~ .form-check-sign .check {
+      border-color: #000000;
+      opacity: .26; }
+    .form-check .form-check-input[disabled] + .form-check-sign .check:after {
+      background-color: rgba(0,0,0, 0.87);
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg); }
+    .form-check .form-check-input[disabled][checked] + .form-check-sign .check {
+      background-color: #000000; }
+  
+  @-webkit-keyframes checkbox-on {
+    0% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px; }
+    50% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px; }
+    100% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px; } }
+  
+  @keyframes checkbox-on {
+    0% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px; }
+    50% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px; }
+    100% {
+      -webkit-box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+              box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px; } }
+  
+  @-webkit-keyframes rippleOn {
+    0% {
+      opacity: 0; }
+    50% {
+      opacity: 0.2; }
+    100% {
+      opacity: 0; } }
+  
+  @keyframes rippleOn {
+    0% {
+      opacity: 0; }
+    50% {
+      opacity: 0.2; }
+    100% {
+      opacity: 0; } }
+  
+  @-webkit-keyframes rippleOff {
+    0% {
+      opacity: 0; }
+    50% {
+      opacity: 0.2; }
+    100% {
+      opacity: 0; } }
+  
+  @keyframes rippleOff {
+    0% {
+      opacity: 0; }
+    50% {
+      opacity: 0.2; }
+    100% {
+      opacity: 0; } }
+  
+/*  \Form Check */

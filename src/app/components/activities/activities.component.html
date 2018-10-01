@@ -1,0 +1,17 @@
+<!-- Our Team-->    
+<section id="our-team" class="bglight">
+    <div class="container-fluid">
+
+        <div *ngIf="isGoodControl">
+            <app-goodcontrol></app-goodcontrol>
+        </div>
+        <div *ngIf="isPartialControl">
+            <app-partialcontrol></app-partialcontrol>
+        </div>
+        <div *ngIf="isBadControl">
+            <app-badcontrol></app-badcontrol>
+        </div>
+
+    </div>
+ </section>
+ <!-- Our Team ends--> 

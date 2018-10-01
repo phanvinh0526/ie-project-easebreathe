@@ -1,0 +1,224 @@
+
+<!-- Mobile Apps -->  
+<section id="our-apps" class="padding">
+        <div class="container">
+        
+            <!-- Navigation -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="heading-title wow fadeInDown heading_space" data-wow-delay="300ms">
+                        <h2 class="darkcolor">Asthma Symptoms Questionaires</h2>
+                        <span class="" style="font-size: 16px; width: 80%; margin: auto">The most important aspect of asthma management is the overall control of your child’s illness. After a confirmed diagnosis of asthma, parents can assess their child’s current asthma control status by answering a set of questions related to frequency of occurrence of the symptoms, the frequency of use of reliever medications and measures of lung function like FEV (Forced Expiratory Volume).</span>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- QUestions -->
+            <div class="row" id="app-feature">
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="content-left clearfix">
+                        <div class="feature-item left top30 bottom30 wow fadeInLeft" id="symp-good-control" data-wow-delay="300ms">
+                            <span class="icon card-header-primary"><i class="fa fa-thumbs-up"></i></span>
+                            <div class="text">
+                                <h4>Good Control Asthma</h4>
+                                <!-- <p>Do we need a short description here?</p> -->
+                            </div>
+                        </div>
+                        <div class="feature-item left top30 bottom30 wow fadeInLeft" id="symp-partial-control" data-wow-delay="350ms">
+                            <span class="icon"><i class="fa fa-balance-scale"></i></span>
+                            <div class="text">
+                                <h4>Partial Control Asthma</h4>
+                                <!-- <p>Do we need a short description here?</p> -->
+                            </div>
+                        </div>
+                        <div class="feature-item left top30 bottom30 wow fadeInLeft" id="symp-bad-control" data-wow-delay="400ms">
+                            <span class="icon"><i class="fa fa-thumbs-down"></i></span>
+                            <div class="text">
+                                <h4>Bad Control Asthma</h4>
+                                <!-- <p>Do we need a short description here?</p> -->
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Marking -->
+                        <div class="cbp-item feature-item left bottom30 wow fadeInLeft">
+                            <div class="bottom-text">
+                                <div class="cells  wow fadeIn" data-wow-delay="450ms">
+                                    <p>Your current asthma score: </p>
+                                    <h2 class="port_head gradient_text" id="score-counter">{{ scoreCounter }}</h2>
+                                    <p class="bottom15"> out of 25</p>
+                                </div>
+                            </div>
+                            <div class="cells wow fadeInLeft" data-wow-delay="500ms">
+                                <a href="#" class="button btnsecondary btn-gradient-hvr" id="score-submit-btn">Submit Survey</a>
+                            </div>
+                        </div>
+                        <!-- /Marking -->
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12" style="padding-left: 50px">
+                    <div class="content-right clearfix">
+        
+                        <!-- Google Control-->
+                            <div class="feature-item right top30 bottom30 left30 wow fadeInRight" id="symp-good-control-child">
+                                <table class="table table-bordered">
+                                    <tr class="card-header-success justify-content-center">
+                                        <th>What asthma symptoms to you commonly notice in your child?</th>
+                                        <th>Coughing / Difficulty in Breathing</th>
+                                        <th>Tightness in the chest</th>
+                                        <th>Wheezing</th>
+                                    </tr>
+                                    <!-- Line 1 -->
+                                    <tr>
+                                    <td>In last 2 weeks, how often was your child
+                                        bothered by the asthma symptoms during
+                                        the <strong>daytime</strong></td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <p clas="title"> <= 2 per week</p>
+                                                <input class="form-check-input" type="radio" value="5" name="good-q1" (change)="onClickChange(5)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <p clas="title"> > 2 per week</p>
+                                                <input class="form-check-input" type="radio" value="3" name="good-q1" (change)="onClickChange(3)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <p clas="title"> >= 5 per week</p>
+                                                <input class="form-check-input" type="radio" value="1" name="good-q1" (change)="onClickChange(1)">
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <!-- /Line 1 -->
+        
+                                    
+                                    <!-- Line 2 -->
+                                    <tr>
+                                        <td>Less than 1 time per week have athma symptoms at <strong>Night time</strong> which caused sleep disruption</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" value="" name="good-q2">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" value="" name="good-q2">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <!-- /Line 2 -->
+                                        <!-- Line 3 -->
+                                        <tr>
+                                        <td>In last 2 weeks, <strong>no</strong> extent of asthma interfered with your child’s routine life, including his ability to play, go to school or participate in any activity compared to other children of his/her age.</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <!-- /Line 3 -->
+                                        <!-- Line 4 -->
+                                        <tr>
+                                        <td>In last 2 weeks, <strong>less than or equal to 2 times</strong> that your child used asthma reliever medication to get quick relief from the symptoms.</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <!-- /Line 4 -->
+                                        <!-- Line 5 -->
+                                        <tr>
+                                        <td>In the last 2 weeks, was the recorded Forced expiratory volume (FEV) greater than 80%?</td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <!-- /Line 5 -->
+                                </table>
+                            </div>
+                        <!-- /Good Control -->
+        
+                    </div>
+                </div>
+            </div>
+        
+            
+        </div>
+        </section>                                                                                 
+        <!--Mobile Apps ends-->  
+        
