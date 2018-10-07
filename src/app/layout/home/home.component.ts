@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import {ActivatedRoute} from '@angular/router'; 
+
 
 declare var $:any;
 declare var Typewriter:any;
@@ -12,9 +14,17 @@ declare var Typewriter:any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  private fragment: string;
+
+  bgVideoSrc: string;
+
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.bgVideoSrc = 'assets/video/video-slide.mp4';
+
 
     /*----- Type Writter Effect -----*/
     if ($("#typewriting").length) {
@@ -29,8 +39,19 @@ export class HomeComponent implements OnInit {
         .typeString('Asthma blogs').start();
     }
 
+    // href routing
+    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
 
 
+  }
+
+  ngAfterViewInit(): void {
+    try {
+
+      // console.log("HERE: AfterViewInit", this.fragment);
+
+      document.querySelector('#' + this.fragment).scrollIntoView();
+    } catch (e) { }
   }
 
 }

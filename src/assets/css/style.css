@@ -121,6 +121,10 @@ blockquote.blockquote::before{
 }
 
 /* Helper Classes & Shorcodes */
+.padding-extent-top{
+    padding-top: 15.5rem;
+    padding-bottom: 8.5rem;
+}
 .padding {
     padding: 7.5rem 0;
 }
@@ -266,10 +270,10 @@ section{
 }
 .gradient_bg_default{
     background: -webkit-linear-gradient(90deg, #00e4ce 31%, #00abc9 69%);
-    background: -webkit-gradient(linear, left top, right top, color-stop(31%, #00e4ce), color-stop(69%, #00abc9));
+    /* background: -webkit-gradient(linear, left top, right top, color-stop(31%, #00e4ce), color-stop(69%, #00abc9));
     background: -webkit-linear-gradient(left, #00e4ce 31%, #00abc9 69%);
     background: -o-linear-gradient(left, #00e4ce 31%, #00abc9 69%);
-    background: linear-gradient(90deg, #00e4ce 31%, #00abc9 69%);
+    background: linear-gradient(90deg, #00e4ce 31%, #00abc9 69%); */
 }
 .gradient_bg_alt{
     background: -webkit-linear-gradient(90deg, #90A4AE 31%, #607D8B 69%);
@@ -768,17 +772,18 @@ i::before,i::after{
    position: relative;
 }
 .center-brand .navbar-brand {
-   position: absolute;
+    position: absolute;
    left: 0;
    right: 0;
    margin: 0 auto;
-   text-align: center;
+   text-align: center; 
    top: 50%;
+   padding: 0;
    -webkit-transform: translateY(-50%);
    -ms-transform: translateY(-50%);
    -o-transform: translateY(-50%);
    transform: translateY(-50%);
-   padding: 0;
+   
 }
 .navbar-brand > img {
    width: 100%;
@@ -1793,7 +1798,7 @@ i::before,i::after{
    display: table-cell;
 }
 .process-wrapp li:hover {
-   cursor: pointer;
+   /* cursor: pointer; */
 }
 .process-wrapp li > .pro-step {
    display: inline-block;

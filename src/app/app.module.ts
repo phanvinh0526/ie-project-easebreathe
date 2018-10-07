@@ -28,6 +28,11 @@ import { ActivitiesComponent } from './components/activities/activities.componen
 import { GoodcontrolComponent } from './components/activities/goodcontrol/goodcontrol.component';
 import { PartialcontrolComponent } from './components/activities/partialcontrol/partialcontrol.component';
 import { BadcontrolComponent } from './components/activities/badcontrol/badcontrol.component';
+import { BodyComponent } from './layout/body/body.component';
+import { Home2Component } from './layout/home2/home2.component';
+import { AppRoutingModule } from './app-routing.module';
+import { QuizzComponent } from './components/quizz/quizz.component';
+import { MainsliderComponent } from './components/mainslider/mainslider.component';
 
 
 @NgModule({
@@ -51,11 +56,16 @@ import { BadcontrolComponent } from './components/activities/badcontrol/badcontr
     ActivitiesComponent,
     GoodcontrolComponent,
     PartialcontrolComponent,
-    BadcontrolComponent
+    BadcontrolComponent,
+    BodyComponent,
+    Home2Component,
+    QuizzComponent,
+    MainsliderComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
     
   ],
   providers: [WeatherApiService, ServerApiService],

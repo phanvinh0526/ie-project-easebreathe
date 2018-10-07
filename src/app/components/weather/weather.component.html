@@ -1,156 +1,143 @@
 
-<section id="asthma-weather" class="padding bglight">
+<section id="asthma-weather" class="padding_top">
 <div class="container-fluid">
 <!-- <div class="container-fluid"> -->
 
     <div class="map-container">
     <!-- Map Description -->
-    <div class="col-md-10 offset-md-1">
-    <h3 class="card-title">Asthma Acitivity Recommendation</h3>
-    <p>By using Weather forecasting data together with your Asthma Level Survey, we make some recommendations to where you are planning to go in the next few days</p>
-    
+    <div class="container">
+        
+        <!-- Navigation -->
+        <div class="row">
+            <div class="col-md-12 col-sm-12 text-center">
+                <div class="heading-title wow fadeInDown heading_space" data-wow-delay="300ms">
+                    <h2 class="darkcolor">EaseBreathe Weather & Pollen Check</h2>
+                    <span class="" style="font-size: 16px; width: 80%; margin: auto">
+                            Weather conditions can have a major impact on the symptoms of asthma. The air
+                            quality, temperature and pollen count are factors that are directly or indirectly associated to
+                            increase in the appearance of symptoms of asthma.
+                            EaseBreathe Weather Check allows you to view weather forecast details pertaining to asthma.
+                    </span><br>
+                    <span class="" style="font-size: 16px; width: 80%; margin: auto">
+                            Furthurmore, Pollen allergen is one of the main triggers lead to Asthma Attacks in Autralia.
+                            By looking at the <strong>Choropleth Map</strong>, we can see the level of pollen desnity 
+                            at each LGA (local government area) in Melbourne.
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="map-wrapper">
-    <!-- Render Googmal Map -->
-    <div id="map" class="map-frame"></div>
+        
+        <!-- Render Googmal Map -->
+        <div id="map" class="map-frame"></div>
 
-    <!-- GMap Info Content on Makers -->
-    <!-- <div class="col-md-12 info-window" id="infowindow-content">
+
+        <!-- Render Search Location -->
+        <div class="map-search-input wow fadeInDown " data-wow-delay="300ms">
+                <div class="input-group no-border">
+                    <input id="pac-input" type="text" value="" class="form-control map-int-search" placeholder="Try LGA orce-overflow suburbs">
+                    <button mat-raised-button type="submit" class="btn btn-primary-custom btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+        </div>
+        <!-- /Render Search Location -->
+
+
+    <!-- Overlay Areas -->
+    <div class="map-overlay" *ngIf="showMapOverLay === true">
+
+        <!-- GMap Info Content | InfoWindow | Weather 5 Days -->
+        <div class="col-md-12 map-weather wow fadeInRight " data-wow-delay="300ms" >
             <div class="row font-medium" style="margin-left: 10px; height: 15%">
-            <h5 class="card-title font-medium" id="place-address">Melbourne VIC</h5>
-            <hr>
+                <h5 class="card-title font-medium text-warning">{{ weatherObj.address }}</h5>
             </div>
+            <hr class="horizontal-white-line">
             <div class="row text-center font-small small-padding small-margin" style="height: 85%">
-                <div class="col-md-4 ">
-                <div class="row" style="margin: auto">
-                    <div class="col-md-6 no-padding">
-                        <i class="material-icons icon-medium-font">wb_sunny</i>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row" style="margin: auto">
+                        <div class="col-md-6 no-padding">
+                            <i [ngClass]="icon_trans[weatherObj.list[0].weather[0].icon]" class="material-icons icon-medium-font"></i>
+                        </div>
+                        <div class="col-md-6 text-center no-padding">
+                            <h5 class="card-title cus-text-center" style="font-weight: 700;">{{weatherObj.list[0].weather[0].main.toUpperCase()}} </h5>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-center no-padding">
-                        <h5 class="card-title cus-text-center" >RAIN</h5>
+                    <p class="category" style="margin-bottom: 2px; font-size: 20px">{{ weatherObj.list[0].weather[0].description.toLowerCase() }}</p>
+                    <p class="category" style="font-weight: 200; font-size: 20px">Humidity : {{ weatherObj.list[0].main.humidity }}</p>
+                </div>
+                <div class="col-md-4 col-sm-4 small-margin full-width">
+                    <h5 class="card-title">{{ _getWeekDay(this.weatherObj.list[7].dt) }}</h5>
+                    <i [ngClass]="this.icon_trans[this.weatherObj.list[7].weather[0].icon]" class="material-icons icon-small-font">wb_sunny</i>
+                    <p class="category "><strong>{{ weatherObj.list[7].weather[0].main.toUpperCase() }}</strong></p>
+                    <p class="category " style="font-weight: 200;text-transform: lowercase;">
+                        {{ this.weatherObj.list[7].weather[0].description.toUpperCase() }}
+                    </p>
+                </div>
+                <!-- forecast 5 days -->
+                <div class="row" *ngFor="let index of [14,21,28]">
+                    <div class="col-md-4 col-sm-4 small-margin full-width">
+                        <h5 class="card-title">{{ _getWeekDay(this.weatherObj.list[index].dt) }}</h5>
+                        <i [ngClass]="this.icon_trans[this.weatherObj.list[index].weather[0].icon]" class="material-icons icon-small-font">wb_sunny</i>
+                        <p class="category "><strong>{{ weatherObj.list[index].weather[0].main.toUpperCase() }}</strong></p>
+                        <p class="category " style="font-weight: 200;text-transform: lowercase;">
+                            {{ this.weatherObj.list[index].weather[0].description.toUpperCase() }}
+                        </p>
                     </div>
                 </div>
-                    <p class="category" style="margin-bottom: 2px">light rain</p>
-                    <p class="category">Humidity : 90%</p>
-                </div>
-                <div class="col-md-2 small-margin">
-                    <h5 class="card-title">MON</h5>
-                    <i class="material-icons icon-small-font">wb_sunny</i>
-                    <p class="category "><strong>20 C</strong></p>
-                    <p class="category">18 C</p>
-                </div>
-                <div class="col-md-2 small-margin">
-                    <h5 class="card-title">TUE</h5>
-                    <i class="material-icons icon-small-font">wb_sunny</i>
-                    <p class="category"><strong>20 C</strong></p>
-                    <p class="category">18 C</p>
-                </div>
-                <div class="col-md-2 small-margin">
-                <h5 class="card-title">TUE</h5>
-                    <i class="material-icons icon-small-font">wb_sunny</i>
-                    <p class="category"><strong>20 C</strong></p>
-                    <p class="category">18 C</p>
-                </div>
-                <div class="col-md-2 small-margin">
-                <h5 class="card-title">TUE</h5>
-                    <i class="material-icons icon-small-font">wb_sunny</i>
-                    <p class="category"><strong>20 C</strong></p>
-                    <p class="category">18 C</p>
-                </div>
+                <!-- /forecast 5 days -->
+            </div>
         </div>
-    </div> -->
+        <!-- /GMap Info Content | InfoWindow | Weather 5 Days -->
 
-    <!-- InfoWindow for Google Map -->
-    <!-- <div class="col-md-12 info-window" id="infowindow-content" style="display: none">
-        <div class="row " style="margin-left: 10px; height: 15%">
-        <h5 class="card-title font-medium" id="place-address" ></h5>
+        <!-- Render Control Panel -->
+        <div class="row map-temp wow fadeInRight" data-wow-delay="400ms">
+            <div class="col-md-12 text-center ">
+                <!-- Current Weather Condition -->
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h4 class="text-warning">
+                            Temperature every 3 hours
+                        </h4>
+                    </div>
+                    <!-- <div class="col-md-8 offset-md-2 ml-auto mr-auto cus-text-center">
+                    <h5 class="card-title font-large" style="color: white !important">{{ this.weatherObj.list[0].weather[0].main.toUpperCase() }}</h5>
+                    <p class="category">{{ this.weatherObj.list[0].weather[0].description.toLowerCase() }}</p>
+                    <p class="category">Humidity : {{ this.weatherObj.list[0].main.humidity }}</p>
+                    </div> -->
+                </div>
+                <!-- Forecasting Data -->
+                <hr class="horizontal-white-line">
+                <div class="row scrollbar" id="scroll-bar">
+                    <div class="table-responsive orce-overflow" >
+                    <table class="table table-striped table-dark">
+                        <tr class="text-rose forn-small">
+                            <th>Date Time</th>
+                            <th>Min Temp (C)</th>
+                            <th>Max Temp (C)</th>
+                        </tr>
+                        <!-- Loop -->
+                        <tr *ngFor="let obj of weatherObj.list">
+                            <td>{{ obj.dt_txt }}</td>
+                            <td>{{ _convertKelvin2Cel(obj.main.temp_min) }}</td>
+                            <td>{{ _convertKelvin2Cel(obj.main.temp_max) }}</td>
+                        </tr>
+                        <!-- /Loop -->
+                    </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row text-center small-padding small-margin" style="height: 85%">
-        <div class="col-md-4">
-            <i class="material-icons icon-medium-font">wb_sunny</i>
-            <h5 class="card-title" style="margin-bottom: 2px">RAIN</h5>
-            <p class="category">light rain</p>
-            <p class="category">Humidity : 90%</p>
-        </div>
-        <div class="col-md-2 small-margin">
-            <h5 class="card-title">MON</h5>
-            <i class="material-icons icon-small-font">wb_sunny</i>
-            <p class="category "><strong>20 C</strong></p>
-            <p class="category">18 C</p>
-        </div>
-        <div class="col-md-2 small-margin">
-            <h5 class="card-title">TUE</h5>
-            <i class="material-icons icon-small-font">wb_sunny</i>
-            <p class="category"><strong>20 C</strong></p>
-            <p class="category">18 C</p>
-        </div>
-        <div class="col-md-2 small-margin">
-            <h5 class="card-title">TUE</h5>
-            <i class="material-icons icon-small-font">wb_sunny</i>
-            <p class="category"><strong>20 C</strong></p>
-            <p class="category">18 C</p>
-        </div>
-        <div class="col-md-2 small-margin">
-            <h5 class="card-title">TUE</h5>
-            <i class="material-icons icon-small-font">wb_sunny</i>
-            <p class="category"><strong>20 C</strong></p>
-            <p class="category">18 C</p>
-        </div>
-        </div>
-    </div> -->
-    <!-- InfoWindow for Google Map -->
+        <!-- /Render Control Panel -->
+    </div>
+    <!-- /Overlay Areas -->
 
-    <!-- Render Search Location -->
-    <div class="map-search-input">
-        <form class="navbar-form">
-            <div class="input-group no-border">
-                <input id="pac-input" type="text" value="" class="form-control map-int-search" placeholder="Try LGA orce-overflow suburbs">
-                <button mat-raised-button type="submit" class="btn btn-primary-custom btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                </button>
-            </div>
-        </form>
-    </div>
 
-    <!-- Render Control Panel -->
-    <div class="map-overlay" *ngIf="showMapOverLay">
-        <div class="col-md-12 text-center map-white-text">
-        <!-- Current Weather Condition -->
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <!-- <i [ngClass]="this.MapOverLayClass">/i> -->
-                <h1> Testing : [( console.log(this.weatherObj) )]</h1>
-            </div>
-            <div class="col-md-8 offset-md-2 ml-auto mr-auto text-center">
-            <h5 class="card-title font-large" style="color: white !important">{{ this.weatherObj.list[0].weather[0].main.toUpperCase() }}</h5>
-            <p class="category">{{ this.weatherObj.list[0].weather[0].description.toLowerCase() }}</p>
-            <p class="category">Humidity : {{ this.weatherObj.list[0].main.humidity }}</p>
-            </div>
-        </div>
-        <!-- Forecasting Data -->
-        <hr class="horizontal-white-line">
-        <div class="row scrollbar" id="scroll-bar">
-            <div class="table-responsive orce-overflow" >
-            <table class="table table-striped table-dark">
-                <tr>
-                <td>Now</td>
-                <td>20 C</td>
-                </tr>
-                <tr>
-                <td>9:00</td>
-                <td>30 C</td>
-                </tr>
-            </table>
-            </div>
-        </div>
-        </div>
     </div>
     </div>
-    </div>
-<!-- </div> -->
 </div>
 
-<!-- <div class="card-icon"><i class="material-icons">mail_outline</i></div> -->
 </section>

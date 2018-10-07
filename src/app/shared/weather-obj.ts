@@ -1,4 +1,9 @@
 
+export class TreeCount{
+    lga: string;
+    count: number;
+}
+
 export class PollenObject{
     // gid, crown, lat, lon
     crown: number;

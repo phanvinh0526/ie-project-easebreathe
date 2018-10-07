@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivitiesComponent implements OnInit {
 
-  controlIndicator: number = 1; // as default: good control
+  controlIndicator: number = 2; // as default: good control
   isGoodControl: boolean = false;
   isPartialControl: boolean = false;
   isBadControl: boolean = false;

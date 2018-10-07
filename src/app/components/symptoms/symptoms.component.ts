@@ -52,28 +52,31 @@ export class SymptomsComponent implements OnInit {
       },
     })
     .then((value) => {
-      this.link = document.createElement("a");
+      // this.link = document.createElement("a");
 
-      switch (value) {
-        case "go":
-          swal("Pikachu fainted! You gained 500 XP!");
-          break;
+      // switch (value) {
+      //   case "go":
+      //     swal("Pikachu fainted! You gained 500 XP!");
+      //     break;
      
-        case "jump":
+      //   case "jump":
           
-          this.link.href = "#asthma-activity";
-          this.link.add = "button btnsecondary btn-gradient-hvr pagescroll"; // doesnt work
-          this.link.text = "Click Here";
+      //     this.link.href = "#asthma-activity";
+      //     this.link.add = "button btnsecondary btn-gradient-hvr pagescroll"; // doesnt work
+      //     this.link.text = "Click Here";
 
-          swal("Gotcha!", {
-            icon: "success",
-            content: this.link
-          });
-          break;
+      //     swal("Gotcha!", {
+      //       icon: "success",
+      //       content: this.link
+      //     });
+      //     break;
      
-        default:
-          swal("Cancel!", "warning");
-      }
+      //   default:
+      //     swal("Cancel!", "warning");
+      // }
+
+      document.querySelector('#asthma-activity').scrollIntoView();
+
     });
   }
 

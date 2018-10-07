@@ -1,4 +1,16 @@
 p{
-    font-size: 15px;
-    
+    font-size: 17px !important;
+}
+.rev-scroll-btn{
+    margin: 0 auto !important;
+    margin-top: 120px !important;
+    border-color: white !important;
+    border-width: 3px !important;
+    /* bottom: 50px !important; */
+}
+.rev-scroll-btn > span{
+    background: white !important;
+}
+.full-page{
+    height: 100% !important;
 }

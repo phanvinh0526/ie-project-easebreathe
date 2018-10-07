@@ -33,9 +33,9 @@ export class PollenComponent implements OnInit {
   ngOnInit() {
 
     // first, load data only 1 single time, draw map, then dra heatmap layer
-    this._fullloadPollenData();
+    // this._fullloadPollenData();
 
-    // this._drawSuburbGeoJson();
+    this._drawSuburbGeoJson();
   }
   
 
@@ -106,12 +106,12 @@ export class PollenComponent implements OnInit {
 
   
   // -- Load Suburb GeoJson
-  _drawSuburbGeoJson(): void{
-    this.weatherApiService._getSuburbGeoJson().toPromise()
+  _drawSuburbGeoJson(): void {
+    this.weatherApiService._getSuburbGeoJson_tmp().toPromise()
       .then(
         (data: any) => {
-          // console.log("fullLoad GeoJson");
-          // console.log(data);
+          console.log("fullLoad GeoJson");
+          console.log(data);
           this.suburbGeo = data;
         }
       )
@@ -137,14 +137,14 @@ export class PollenComponent implements OnInit {
   }
 
   // -- Draw Multi Polygon Suburbs
-  _drawPolygon_Layer(): void{
-    this.heatmap_layer = new google.maps.visualization.HeatmapLayer({
-        data: this._getPoints(),
-        map: this.heatmap,
-        radius: 40
+  // _drawPolygon_Layer(): void{
+  //   this.heatmap_layer = new google.maps.visualization.HeatmapLayer({
+  //       data: this._getPoints(),
+  //       map: this.heatmap,
+  //       radius: 40
 
-    });
-  }
+  //   });
+  // }
 
 
   //-- Google Map requires Visualisation library extension

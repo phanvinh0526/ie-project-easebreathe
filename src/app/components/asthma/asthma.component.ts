@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 @Component({
   selector: 'app-asthma',
   templateUrl: './asthma.component.html',
@@ -10,6 +12,10 @@ export class AsthmaComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
+
+    
   }
+
 
 }

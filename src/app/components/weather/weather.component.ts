@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 // Pojos
-import { WeatherObj } from '../../shared/weather-obj';
+import { WeatherObj, TreeCount } from '../../shared/weather-obj';
 // import { WeatherForecaseObj } from '../shared/api-weather-obj';
 
 // Services
 import { WeatherApiService } from '../../services/weather-api.service';
 import { ServerApiService  } from '../../services/server-api.service';
-
+import { PollenApiService } from '../../services/pollen-api.service';
 
 import { MAP_OPTION } from '../../shared/map-options';
 
 
 // -- Global Variable -- //
 declare const google: any;
-declare var $: any;
-
+declare const $: any;
+declare const chroma: any;
 
 
 @Component({
@@ -27,7 +27,9 @@ export class WeatherComponent implements OnInit {
 
   // Variables
   weatherObj: WeatherObj;
+  selectedIdx: number;
   map: any;
+  lga_layer: any;
   autocomplete: any;
   place: any;
   infowindow: any;
@@ -37,10 +39,12 @@ export class WeatherComponent implements OnInit {
   icon_trans: object;
   showMapOverLay: boolean;
   MapOverLayClass: string;
-
+  lga_color: any;
+  lga_tree_count = new Array<TreeCount>();
 
   constructor(private weatherApiService: WeatherApiService,
-            private serverApisService: ServerApiService) { }
+            private serverApisService: ServerApiService,
+            private pollenApiService: PollenApiService) { }
 
   ngOnInit() {
 
@@ -66,6 +70,10 @@ export class WeatherComponent implements OnInit {
         '50d': 'flaticon-036-wind-1', '50n': 'flaticon-036-wind-1'
     }
 
+    // Set color domain
+    this.lga_color = chroma.scale(['#0f0', '#f00']).domain([3.2 , 4.7]); // mycolor_LGA(Math.log10(grades[i]))
+
+    // Hide sidebar
     this.showMapOverLay = false;
 
     // Draw a map
@@ -73,9 +81,6 @@ export class WeatherComponent implements OnInit {
 
     this._autocomplete();
 
-    // this._showConfig();
-
-    // console.log("CWO", this.weatherObj);
   }
 
 
@@ -83,12 +88,8 @@ export class WeatherComponent implements OnInit {
   _autocomplete(): void {
       let card = document.getElementById('pac-card');
       let input = document.getElementById('pac-input');
-      // let types = document.getElementById('type-selector');
-      // let strictBounds = document.getElementById('strict-bounds-selector');
 
       this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-
       this.autocomplete = new google.maps.places.Autocomplete(input);
 
       // Bind the map's bounds (viewport) property to the autocomplete object,
@@ -101,13 +102,6 @@ export class WeatherComponent implements OnInit {
           ['address_components', 'geometry', 'icon', 'name']);
 
       this.infowindow = new google.maps.InfoWindow();
-
-      // Set infowindow new custom design
-      // this.infowindowContent = document.getElementById('infowindow-content');
-      // this.infowindow.setContent(this.infowindowContent);
-
-      // Melbourn City as a default value : "2145234"
-      // this.infowindow.setContent(this._prepareInfoWindowContent(2145234));
 
       //  ----------------------------------------------------------------------
 
@@ -123,6 +117,48 @@ export class WeatherComponent implements OnInit {
       this._listen_autocomplete_marker();
 
   }
+
+  _callWeatherAPI(tPlace: any): void{
+        // As default, we select element [1] - long-name removed 'city' as the keyword to query cityId
+        let cityName = tPlace.address_components[1].long_name.replace('City', '');
+        let cityId = this.serverApisService._getCityId_by_Name(cityName);
+
+        // ----------------------------------------------------------------
+        // Subscribe WeatherObj and update its value to weatherObj variable
+        // console.log("cityID type @ WeatherAPIService: ", cityId);
+
+        this.weatherApiService._getForecastConfig(cityId).toPromise()
+        .then(
+
+    // First, get data from Weather API
+        (data: WeatherObj) => {
+            // console.log("Data: ", data);
+            this.weatherObj = { ...data };
+            // console.log("_getForecastConfig NEW: ", this.weatherObj);
+        }
+        ).then(
+            () => {
+    // Second, add google map api data (suburb, lga, address)
+                this._getGoogleApiData();
+            }
+        ).then(
+            () => {
+    // Thirds, update Content of Info-Window
+                // this.infowindow.setContent(this._prepareInfoWindowContent());
+                // this.infowindow.open(this.map, this.marker);
+                
+            }
+        ).then(
+            () => {
+    //  Fourth, update Content of Left Weather Bar
+                this.showMapOverLay = true;
+                this._prepareSidebarContent(0); // default get 1 item
+
+
+            }
+        );
+    }
+
 
   _listen_autocomplete_marker(): void{
       this.marker.addListener('click', () => {
@@ -149,7 +185,7 @@ export class WeatherComponent implements OnInit {
           if (!this.place.geometry) {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
-            window.alert("No details available for input: '" + this.place.name + "'");
+                window.alert("No details available for input: '" + this.place.name + "'");
             return;
           }
 
@@ -172,14 +208,13 @@ export class WeatherComponent implements OnInit {
       });
   }
 
-  _getGoogleApiData(wObj: any): any{
+  _getGoogleApiData(): any{
 
-      // console.log("WeaObj: ", wObj);
-      // console.log("PC: ",this.weatherObj.list);
-      // console.log("PC: ",this.weatherObj.list.length);
+    //   console.log("WeaObj: ", wObj);
+    //   console.log("PC: ",this.weatherObj.list);
+    // console.log("PC: ",this.weatherObj.list.length);
 
-
-      wObj.address = '';
+        this.weatherObj.address = '';
           if (this.place.address_components) {
             this.weatherObj.address = [
               (this.place.address_components[0] && this.place.address_components[0].short_name || ''),
@@ -187,72 +222,24 @@ export class WeatherComponent implements OnInit {
               (this.place.address_components[2] && this.place.address_components[2].short_name || '')
             ].join(' ');
           }
-      return wObj;
   }
 
-
-  _callWeatherAPI(tPlace: any): void{
-      // As default, we select element [1] - long-name removed 'city' as the keyword to query cityId
-      let cityName = tPlace.address_components[1].long_name.replace('City', '');
-      let cityId = this.serverApisService._getCityId_by_Name(cityName);
-
-      // ----------------------------------------------------------------
-      // Subscribe WeatherObj and update its value to weatherObj variable
-      // console.log("cityID type @ WeatherAPIService: ", cityId);
-
-      this.weatherApiService._getForecastConfig(cityId).toPromise()
-      .then(
-        (data: WeatherObj) => {
-          // console.log("Data: ", data);
-          this.weatherObj = { ...data };
-          // console.log("_getForecastConfig NEW: ", this.weatherObj);
-        }
-      ).then(
-          () => {
-              this._getGoogleApiData(this.weatherObj);
-          }
-      ).then(
-          () => {
-              // -- Update Content of Info-Window -- //
-              this.infowindow.setContent(this._prepareInfoWindowContent());
-              this.infowindow.open(this.map, this.marker);
-
-              // console.log("FINAL: ", this.weatherObj);
-          }
-      ).then(
-          () => {
-              // -- Update Content of Left Weather Bar -- //
-              // console.log("Weather: ", this.weatherObj);
-
-              // this.showMapOverLay = true;
-
-              this.MapOverLayClass = this.icon_trans[this.weatherObj.list[0].weather[0].icon] + " material-icons icon-large-font";
-
-
-
-              // this.icon_trans[this.weatherObj.list[0].weather[0].icon]
-
-          }
-      );
-      console.log('I will not wait until subscribe is executed..');
-      /**
-       *  Subscribe: Once subscribed, “subscribe” callback shall be executed 
-       * whenever there is a new data produced by “Observer”
-       *  Promise: promise’s “then()” callback handler shall be executed at max once
-       */
-
-
-          // (data: WeatherObj) => this.weatherObj = {
-          //         cod: data['cod'],
-          //         message: data['message'],
-          //         list: data['list'],
-          //         city: data['city']
-          // }
-  }
 
   test_func(): any{
       let v = 'ABC Testing';
       return v;
+  }
+
+  _prepareSidebarContent(idx: number): any{
+    if(this.weatherObj === undefined){
+        return '';
+    }
+    
+    this.selectedIdx = idx;
+
+    console.log("PC: ",this.weatherObj.list.length);
+    console.log(this.weatherObj);
+
   }
 
   _prepareInfoWindowContent(): any{
@@ -261,7 +248,6 @@ export class WeatherComponent implements OnInit {
           return '';
       }
 
-      // console.log(data);
       // console.log(this.weatherObj.list);
       // console.log(this.weatherObj.list.length);
 
@@ -308,6 +294,11 @@ export class WeatherComponent implements OnInit {
       return htmlContent;
   }
 
+  _getDayHour(dt: any): string{
+    let d = new Date(dt * 1000);
+    return d.toString();
+  }
+
   _getWeekDay(dt: any): string {
       let d = new Date(dt * 1000);
 
@@ -317,32 +308,173 @@ export class WeatherComponent implements OnInit {
       return this.weekday[d.getDay()];     
   }
 
-  _drawGMap(): void{
+  _convertKelvin2Cel(valNum: any): number {
+    valNum = parseFloat(valNum);
+    // console.log(valNum);
+    return Math.round(valNum-273.15);
+  }
+
+
+    _drawGMap(): void {
       var myLatlng = new google.maps.LatLng(-37.8136, 144.9631);
       var mapOptions = {
-          zoom: 12,
+          zoom: 10,
           center: myLatlng,
         //   scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
           mapTypeControl: false,
           scaleControl: true,
           zoomControl: true,
           streetViewControl: false, 
+          gestureHandling: 'greedy', // shortcut to zoom in out Map
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
           zoomControlOptions: {
               position: google.maps.ControlPosition.LEFT_BOTTOM
           },
           fullscreenControl: false,
-          styles: MAP_OPTION['night']
+          styles: MAP_OPTION['clean']
       };
       
       this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      
 
-      // var marker = new google.maps.Marker({
-      //     position: myLatlng,
-      //     title: "Hello World!"
-      // });
+      //    Draw polygon data layer
+      this._drawPolygonLayer();
 
-      // To add the marker to the map, call setMap();
-      // marker.setMap(map);
-  }
+    }
 
+
+    _drawPolygonLayer(): void {
+
+        //-- Load LGA Tree Count
+        this.pollenApiService._getLGATreeCount().toPromise()
+            .then(
+                (data: any) => {
+                    // console.log("Tree Count Before: ", data);
+                    data = data.split(/\r\n|\n/);
+                    let tmp;
+                    for(let i=1; i < data.length; i++){
+                        tmp = data[i].split(',');
+                        let treeObj = new TreeCount();
+                        treeObj.lga = tmp[0];
+                        treeObj.count = Number(tmp[1]);
+                        this.lga_tree_count.push(treeObj);
+                    }
+                    // console.log("Tree Count After: ", this.lga_tree_count);
+                }
+            );
+
+        //-- Load Suburb GeoJson
+        this.pollenApiService._getSuburbGeoJson().toPromise()
+            .then(
+                (geoJson: any) => {
+                    this.lga_layer = new google.maps.Data();
+                    this.lga_layer.addGeoJson(geoJson);
+                    // console.log("After LGALayer: ", this.lga_layer);
+                }
+            )
+            .then(
+                () => {
+                    this.lga_layer.setStyle(
+                        (feature: any) => {
+                            let colorVar = this._getColorMaster(feature);
+                            // console.log("Returned Color: ", colorVar);
+                            return {
+                                fillColor: colorVar,
+                                fillOpacity: 0.5,
+                                strokeWeight: 1,
+                                strokeColor: '#ffffff',
+                                strokeOpacity: 0.8,
+                                zIndex: 1
+                            };
+                        }
+                    );
+                }
+            )
+            .then(
+                () => {
+                    //--    Add Event Listener on top of Polygons
+
+                    this.lga_layer.addListener('mouseover', (evt: any) => {
+                        this._addMouseoverEvent(evt, this.lga_layer);
+                        this._addMouseclickEvent(evt, this.map, this.infowindow);
+                    });
+
+                    this.lga_layer.addListener('mouseout', (evt: any) => {
+                        this._addMouseoutEvent(evt, this.lga_layer);
+                    });
+
+                    // this.lga_layer.addListener('click', (evt: any) => {
+                    //     this._addMouseclickEvent(evt, this.map, this.infowindow);
+                    // });
+                }
+            )
+            .then(
+                () => {
+                     //-- Set data layer on the Map
+                     this.lga_layer.setMap(this.map);
+                }
+            );
+        console.log("Map LGA Layer has been set successfully!!!");
+    }
+
+
+    _getLgaCount(arr: any, key: string){
+        let lga = arr.filter(function(row){
+            return row['lga'] == key;
+        })[0];
+        return lga['count'];
+    }
+
+    _getColorMaster(feature: any): string{
+        // console.log("Length of LGA: ", this.lga_tree_count.length);
+        let lga = feature.getProperty('neighbourhood');
+
+        let count = this._getLgaCount(this.lga_tree_count, lga);
+        // console.log("LGA Count: ", lga);
+        // console.log("LGA Count Value: ", lga.count);
+        return this._getColor(count);
+    }
+
+    _getColor(fig: any): string {
+        // console.log("_getColor in para: ", fig);
+        // console.log("in getColor Log10: ", Math.log10(fig));
+        return this.lga_color(Math.log10(fig));
+    }
+    
+
+    _addMouseoverEvent(evt: any, dataLayer: any){
+        // Add mouseover and mouse out styling for the GeoJSON State data
+        dataLayer.overrideStyle(evt.feature, {
+            strokeColor: '#3b4be2',
+            strokeWeight: 2,
+            zIndex: 2
+        });
+    }
+
+    _addMouseoutEvent(evt: any, dataLayer: any){
+        dataLayer.revertStyle();
+    }
+
+    _addMouseclickEvent(evt: any, map:any, infoWindow: any){
+
+        // Get variables
+        let lga = evt.feature.getProperty('neighbourhood');
+        let count = this._getLgaCount(this.lga_tree_count, lga);
+
+        let str = `
+                <h5 class="card-title font-medium text-rose">City : `+ lga + `</h5>
+                <h5 class="card-title font-medium text-rose">Number of Trees : `+ count + `<h5>
+        `;
+
+
+        infoWindow.setContent(str);
+        // console.log("Info Str: ", str);
+        // console.log("LatLon: ", evt.latLng.lat());
+        // console.log("Event: ", evt);
+
+
+        let anchor = new google.maps.MVCObject();
+        anchor.set("position", evt.latLng);
+        infoWindow.open(this.map, anchor);
+    }
 }

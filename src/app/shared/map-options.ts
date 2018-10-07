@@ -5,7 +5,7 @@
 export const MAP_OPTION = {
 
     default: null,
-    hide: [
+    clean : [
         {
           featureType: 'poi.business',
           stylers: [{visibility: 'off'}]
@@ -102,7 +102,7 @@ export const MAP_OPTION = {
             }]
         }
       ],
-    black_white: [{
+    daytime: [{
         "featureType": "water",
         "elementType": "geometry",
         "stylers": [{

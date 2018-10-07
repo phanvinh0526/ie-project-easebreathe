@@ -1,18 +1,11 @@
 {
     "type": "FeatureCollection",
-    "crs": {
-        "type": "name",
-        "properties": {
-            "name": "urn:ogc:def:crs:EPSG::4283"
-        }
-    },
     "features": [
         {
             "type": "Feature",
             "properties": {
                 "id": "af33dd8c_0534_4e18_9245_fc64440f742e.30",
-                "postcode": 3085,
-                "suburb": "MACLEOD"
+                "neighbourhood": "Greater Dandenong"
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -1708,8 +1701,7 @@
             "type": "Feature",
             "properties": {
                 "id": "af33dd8c_0534_4e18_9245_fc64440f742e.31",
-                "postcode": 3083,
-                "suburb": "BUNDOORA"
+                "neighbourhood": "Wyndham"
             },
             "geometry": {
                 "type": "MultiPolygon",
