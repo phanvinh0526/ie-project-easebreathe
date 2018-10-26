@@ -6,9 +6,13 @@
             <!-- Navigation -->
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
-                    <div class="heading-title wow fadeInDown heading_space" data-wow-delay="300ms">
+                    <div class="heading-title wow fadeInDown heading_space" data-wow-delay="200ms">
                         <h2 class="darkcolor">Asthma Symptoms Questionaires</h2>
-                        <span class="" style="font-size: 16px; width: 80%; margin: auto">The most important aspect of asthma management is the overall control of your child’s illness. After a confirmed diagnosis of asthma, parents can assess their child’s current asthma control status by answering a set of questions related to frequency of occurrence of the symptoms, the frequency of use of reliever medications and measures of lung function like FEV (Forced Expiratory Volume).</span>
+                        <span class="" style="font-size: 16px; width: 80%; margin: auto">
+                            The most important aspect of asthma management is the overall control of your child’s illness. 
+                            After a confirmed diagnosis of asthma, parents can assess their child’s current asthma control status by 
+                            answering a set of questions related to frequency of occurrence of the symptoms, the frequency of use of 
+                            reliever medications and measures of lung function like FEV (Forced Expiratory Volume).</span>
                     </div>
                 </div>
             </div>
@@ -40,15 +44,15 @@
                         </div>
                         <hr>
                         <!-- Marking -->
-                        <div class="cbp-item feature-item left bottom30 wow fadeInLeft">
+                        <div class="cbp-item feature-item left bottom30 wow fadeInLeft" data-wow-delay="450ms">
                             <div class="bottom-text">
-                                <div class="cells  wow fadeIn" data-wow-delay="450ms">
+                                <div class="cells ">
                                     <p>Your current asthma score: </p>
                                     <h2 class="port_head gradient_text" id="score-counter">{{ scoreCounter }}</h2>
                                     <p class="bottom15"> out of 25</p>
                                 </div>
                             </div>
-                            <div class="cells wow fadeInLeft" data-wow-delay="500ms">
+                            <div class="cells " >
                                 <button class="button btnsecondary btn-gradient-hvr" 
                                         id="score-submit-btn"
                                         (click)='onSelectSurvey()'>Check</button>
@@ -67,7 +71,7 @@
                     <div class="content-right clearfix">
         
                         <!-- Google Control-->
-                            <div class="feature-item right top30 bottom30 left30 wow fadeInRight" id="symp-good-control-child">
+                            <div class="feature-item right top30 bottom30 left30 wow fadeInRight" data-wow-delay="500ms" id="symp-good-control-child">
                             <table class="table table-bordered">
 
                                     <tr class="card-header-success justify-content-center">

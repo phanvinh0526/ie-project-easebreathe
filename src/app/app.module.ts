@@ -33,6 +33,12 @@ import { Home2Component } from './layout/home2/home2.component';
 import { AppRoutingModule } from './app-routing.module';
 import { QuizzComponent } from './components/quizz/quizz.component';
 import { MainsliderComponent } from './components/mainslider/mainslider.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+
+// Global variables
+import { Globals } from './globals';
 
 
 @NgModule({
@@ -65,10 +71,16 @@ import { MainsliderComponent } from './components/mainslider/mainslider.componen
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSpinnerModule
     
   ],
-  providers: [WeatherApiService, ServerApiService],
+  providers: [
+    WeatherApiService, 
+    ServerApiService, 
+    // {provide: LocationStrategy, useClass: HashLocationStrategy},
+    Globals
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

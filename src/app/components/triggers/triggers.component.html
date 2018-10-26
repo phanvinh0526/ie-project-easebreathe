@@ -1,12 +1,15 @@
 
+
+
 <!--Gallery-->
+
 <section id="asthma-triggers" class="bglight">
     <div class="container">
-       <div id="portfolio-measonry" class="cbp border-portfolio]">
+        <div id="portfolio-measonry" class="cbp border-portfolio]">
           <div class="cbp-item itemshadow">
-             <img src="/assets/images/weather.png" alt="">
+             <img [src]="weatherImg" alt="">
              <div class="overlay center-block whitecolor">
-                <a href="/assets/images/weather.png"></a>
+                <a [href]="weatherImg"></a>
                 <h3 class="top30 bottom30 ">Weather</h3>
                 <p class="text-block">
                     Some individuals with asthma can suffer with severe symptoms during certain weather conditions than otherwise. 
@@ -23,8 +26,11 @@
                    <span class=" wow fadeIn" data-wow-delay="200ms">Asthma</span>
                    <h2 class="darkcolor bottom10">Triggers</h2>
                    <p class="text-block">
-                       In the real life, there are many triggers which leads the asthma, in our prject, 
-                       there are four main triggers which leads the asthma.
+                        A trigger is something that sets off or starts asthma symptoms. 
+                        Everyone’s asthma is different, and everyone has different triggers. 
+                        For most people with asthma, triggers are only a problem when their asthma is not well-controlled 
+                        with medicine. The three main triggers of asthmatic symptoms in children are pollens, 
+                        weather and allergens.
                     </p>
                 </div>
              </div>
@@ -41,7 +47,7 @@
                     the pollen grains are broken into tiny particles. These particles can then get further and deeper 
                     inside your lungs than the larger pollen grains, and so trigger a worse asthma response.
                 </p>
-                <a routerLink="/home2" fragment="asthma-pollen" class="button btnsecondary btn-gradient-hvr pagescroll">Explore Pollen Function</a>
+                
              </div>
           </div>
           <div class="cbp-item itemshadow">
@@ -57,9 +63,11 @@
                     in breathing. Some of the allergens leading to Asthmatic symptoms are house dust mites, pets (animal dander), 
                     pollen and mold.
                 </p>
+                <a routerLink="/home2" fragment="asthma-symptoms" class="button btnsecondary btn-gradient-hvr pagescroll">Asthma Survey</a>
              </div>
           </div>
        </div>
     </div>
  </section>
+
  <!--Gallery ends -->  

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'; 
 
+declare var $:any;
 
 @Component({
   selector: 'app-home2',
@@ -15,8 +16,9 @@ export class Home2Component implements OnInit {
 
   ngOnInit() {
 
-    // href routing
+    /* ------- Navigating ------- */
     this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
+    /* ------- /Navigating ------- */
 
 
   }

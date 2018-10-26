@@ -325,7 +325,7 @@ export class WeatherComponent implements OnInit {
           scaleControl: true,
           zoomControl: true,
           streetViewControl: false, 
-          gestureHandling: 'greedy', // shortcut to zoom in out Map
+        //   gestureHandling: 'greedy', // shortcut to zoom in out Map
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           zoomControlOptions: {
               position: google.maps.ControlPosition.LEFT_BOTTOM

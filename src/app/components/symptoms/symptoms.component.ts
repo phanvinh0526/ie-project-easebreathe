@@ -7,6 +7,8 @@ import { SYMPTOMS } from '../../shared/symptoms-obj';
 // Plugins
 import swal from 'sweetalert';
 
+// Global variables
+import { Globals } from '../../globals';
 
 declare var $: any;
 
@@ -20,12 +22,13 @@ declare var $: any;
 export class SymptomsComponent implements OnInit {
 
   // Local Variables
+  asthmaIndicator: number = 0;
   scoreCounter: number = 0;
   symptoms: any = SYMPTOMS;
   selectSymptom: any;
   link: any;
 
-  constructor() { }
+  constructor(private globals: Globals) { }
 
   ngOnInit() {
 
@@ -35,9 +38,9 @@ export class SymptomsComponent implements OnInit {
   }
 
   onSelectSurvey(): void{
-    // swal("Do you want to jump to Physicial Activities Recommendation?", {
-    //   buttons: ["No, go to Weather", "Yes, i do"],
-    // });
+
+    // console.log("Symptom: ", this.globals.asthmaIndicator);
+    this.globals._checkControlIndicator();
 
     swal("Do you want to jump to Physicial Activities Recommendation?", {
       buttons: {
@@ -126,18 +129,28 @@ export class SymptomsComponent implements OnInit {
       $('#bad-control').addClass('card-header-danger');
       $('#partial-control').removeClass('card-header-warning');
       $('#good-control').removeClass('card-header-success');
+
+      this.asthmaIndicator = 3; // poor control
     }
     if(this.scoreCounter >= 10 && this.scoreCounter <= 15){
       $('#bad-control').removeClass('card-header-danger');
       $('#partial-control').addClass('card-header-warning');
       $('#good-control').removeClass('card-header-success');
+
+      this.asthmaIndicator = 2; // partial control
     }
     if(this.scoreCounter >= 16 && this.scoreCounter <= 25){
       $('#bad-control').removeClass('card-header-danger');
       $('#partial-control').removeClass('card-header-warning');
       $('#good-control').addClass('card-header-success');
+
+      this.asthmaIndicator = 1; // good control
     }
 
+    // Assign global variables
+    this.globals.asthmaIndicator = this.asthmaIndicator;
+    this.globals.scoreCounter = this.scoreCounter;
+    this.globals._checkControlIndicator();
   }
 
 

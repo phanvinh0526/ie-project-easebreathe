@@ -1,14 +1,14 @@
 <!-- Our Team-->    
-<section id="asthma-activity" class="padding bglight">
+<section id="asthma-activity" class="padding bglight" *ngIf="globals.enable">
     <div class="container-fluid">
 
-        <div *ngIf="isGoodControl">
+        <div *ngIf="globals.isGoodControl">
             <app-goodcontrol></app-goodcontrol>
         </div>
-        <div *ngIf="isPartialControl">
+        <div *ngIf="globals.isPartialControl">
             <app-partialcontrol></app-partialcontrol>
         </div>
-        <div *ngIf="isBadControl">
+        <div *ngIf="globals.isBadControl">
             <app-badcontrol></app-badcontrol>
         </div>
 

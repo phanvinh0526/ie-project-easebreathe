@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import {ActivatedRoute} from '@angular/router'; 
 
 
 declare var $:any;
-declare var Typewriter:any;
 
 
 @Component({
@@ -16,31 +14,14 @@ export class HomeComponent implements OnInit {
 
   private fragment: string;
 
-  bgVideoSrc: string;
-
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.bgVideoSrc = 'assets/video/video-slide.mp4';
-
-
-    /*----- Type Writter Effect -----*/
-    if ($("#typewriting").length) {
-      let app = document.getElementById("typewriting");
-      let typewriter = new Typewriter(app, {
-        loop: true
-      });
-      typewriter.typeString('Asthma attack first aid').pauseFor(1000).deleteAll()
-        .typeString('Physical activities for asthmatics').pauseFor(1000).deleteAll()
-        .typeString('Asthma prevention').pauseFor(1000).deleteAll()
-        .typeString('Asthma consultation').pauseFor(1000).deleteAll()
-        .typeString('Asthma blogs').start();
-    }
-
-    // href routing
+    /* ------- Navigating ------- */
     this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
+    /* ------- /Navigating ------- */
 
 
   }

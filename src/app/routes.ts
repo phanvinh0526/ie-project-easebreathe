@@ -13,22 +13,17 @@ export const routes: Routes = [
     // Redirect all other URLs to HomePag
     {path: '', redirectTo: '/home', pathMatch: 'full'},
 
+    {path: 'home2', component: Home2Component},
 
     {path: 'home', component: HomeComponent}
-    {path: 'home2', component: Home2Component}
-
+        // children: [
+        //     {
+        //         path: '',
+        //         loadChildren: 'home'
+        //     }
+        // ],
+        // // canActivate: [AuthenticationGuard],
+        // runGuardsAndResolvers: 'always',
+    
     
 ];
-
-// {
-//     path: ‘invites’,
-//     component: InviteComponent,
-//     children: [
-//       {
-//         path: ‘’,
-//         loadChildren: ‘./pages/invites/invites.module#InvitesModule’,
-//       },
-//     ],
-//     canActivate: [AuthenticationGuard],
-//     runGuardsAndResolvers: ‘always’,
-//   }

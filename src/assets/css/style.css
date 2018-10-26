@@ -287,7 +287,7 @@ section{
 .heading-title > span{
     font-size: 1.25rem;
     display: block;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     color: #00bcd4;
 }
 .whitecolor.heading-title > span{
@@ -3019,6 +3019,13 @@ iframe  {
    position: relative;
    z-index: 5; 
 }
+.bg-video-container video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
 
 /*Background Particle*/
 #particles-js {
@@ -3825,7 +3832,8 @@ footer .copyrights > a:focus {
 /*-------------------------------*/
     /*PreLoader*/
 /*-------------------------------*/
-.loader {
+
+/* .loader {
   bottom: 0;
   height: 100%;
   left: 0;
@@ -4108,9 +4116,7 @@ footer .copyrights > a:focus {
 		opacity: 0;
 		-webkit-transform: translateY(97px);
 	}
-}
-
-
+} */
 
 /*-------------------------------*/
       /*Loader ends*/

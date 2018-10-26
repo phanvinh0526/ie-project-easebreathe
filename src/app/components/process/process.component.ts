@@ -12,4 +12,11 @@ export class ProcessComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickEvent(): void{
+    console.log("process-scroll-down");
+
+    document.querySelector('#process-scroll-down').scrollIntoView();
+
+  }
+
 }

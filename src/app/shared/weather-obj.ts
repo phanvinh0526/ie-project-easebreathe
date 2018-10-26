@@ -1,4 +1,10 @@
 
+export class Cities{
+    lga: string;
+    lat: number;
+    lon: number;
+}
+
 export class TreeCount{
     lga: string;
     count: number;

@@ -1,9 +1,9 @@
 //LOADER
 jQuery(window).on("load", function () {
-   "use strict";
-   jQuery(".loader").fadeOut(800);
-
-});
+    "use strict";
+    // jQuery(".loader").fadeIn(2800);
+    jQuery(".loader").fadeOut(2800);
+ });
 
 
 jQuery(function ($) {
@@ -126,7 +126,7 @@ $("#submit_btn").click(function() {
       event.preventDefault();
       $("html,body").animate({
          scrollTop: $(this.hash).offset().top
-      }, 1000);
+      }, 800);
    }); 
 
    
@@ -225,11 +225,11 @@ $("#submit_btn").click(function() {
    
 
    /* -------BG Video banner -------*/
-   $(function () {
-      if ($(".my-background-video").length) {
-         $('.my-background-video').bgVideo();
-      }
-   });
+//    $(function () {
+//       if ($(".my-background-video").length) {
+//          $('.my-background-video').bgVideo();
+//       }
+//    });
    
 
    /* ------ OWL Slider ------ */
@@ -429,32 +429,32 @@ $("#submit_btn").click(function() {
 
    /* ------ CubePortfolio ------ */
    /*main gallery*/
-   $("#portfolio-measonry").cubeportfolio({
-      filters: '#measonry-filters',
-      loadMoreAction: 'click',
-      layoutMode: 'grid',
-      defaultFilter: '*',
-      animationType: "scaleSides",
-      gapHorizontal: 30,
-      gapVertical: 30,
-      gridAdjustment: "responsive",
-      mediaQueries: [{
-         width: 1500,
-         cols: 2
-          }, {
-         width: 1100,
-         cols: 2
-          }, {
-         width: 768,
-         cols: 2
-          }, {
-         width: 480,
-         cols: 1
-          }, {
-         width: 320,
-         cols: 1
-          }],
-   });
+//    $("#portfolio-measonry").cubeportfolio({
+//       filters: '#measonry-filters',
+//       loadMoreAction: 'click',
+//       layoutMode: 'grid',
+//       defaultFilter: '*',
+//       animationType: "scaleSides",
+//       gapHorizontal: 30,
+//       gapVertical: 30,
+//       gridAdjustment: "responsive",
+//       mediaQueries: [{
+//          width: 1500,
+//          cols: 2
+//           }, {
+//          width: 1100,
+//          cols: 2
+//           }, {
+//          width: 768,
+//          cols: 2
+//           }, {
+//          width: 480,
+//          cols: 1
+//           }, {
+//          width: 320,
+//          cols: 1
+//           }],
+//    });
 
    /*Blog Measonry*/
    $("#blog-measonry").cubeportfolio({

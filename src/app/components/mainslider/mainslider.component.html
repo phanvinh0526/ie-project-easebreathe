@@ -1,5 +1,5 @@
 <!--Ful Screen Section Video with caption-->
-<section class="full-screen parallax-video parallaxie center-block bg-video-container" id="homepage">
+<section class="full-screen parallax-video parallaxie center-block bg-video-container full-page" id="homepage">
   <div class="container">
       <div class="row">
           <div class="col-md-2 col-sm-1"></div>
@@ -10,15 +10,15 @@
                       <!-- <span class="block fontbold wow fadeIn" data-wow-delay="500ms">  What is Application Name?</span> -->
                       <span class="block fontbold"> is <span id="typewriting" class="text-rose"></span> </span>
                   </h2>
-                  <a href="#asthma-process" class="button btnwhite pagescroll wow fadeInUp" data-wow-delay="600ms">learn more</a>
+                  <a routerLink="/home2" fragment="asthma-process" class="button btnwhite pagescroll wow fadeInUp" data-wow-delay="600ms">learn more</a>
               </div>
           </div>
           <div class="col-md-2 col-sm-1"></div>
       </div>
   </div> 
   <video class="my-background-video jquery-background-video" loop autoplay muted poster="assets/video/thumb-slide.jpg">
-      <source [src]="bgVideoSrc" type="video/mp4">
-      <!-- <source src="assets/video/video-slide.ogv" type="video/webm"> -->
-      <!-- <source src="assets/video/video-slide.webm" type="video/ogg"> -->
+      <source [src]="bgVideoSrc " type="video/mp4">
+      <source src="assets/video/video-slide.ogv" type="video/webm">
+      <source src="assets/video/video-slide.webm" type="video/ogg">
   </video>
   </section>

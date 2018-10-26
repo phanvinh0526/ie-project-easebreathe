@@ -8,7 +8,9 @@ import { routes } from './routes';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
+    // BrowserModule,
+    // FormsModule,
+    RouterModule.forRoot(routes),
 
   ],
   exports: [ RouterModule ],
