@@ -12,4 +12,10 @@ export class QuizzComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Dummy function
+  _autocomplete(): void {
+    let card = document.getElementById('pac-card');
+    let input = document.getElementById('pac-input');
+  }
+
 }
